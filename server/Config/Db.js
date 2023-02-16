@@ -1,5 +1,5 @@
-import express from 'express';
-import mongoose from 'mongoose';
+import express from "express";
+import mongoose from "mongoose";
 export const app = express();
 
 const { PORT, MONGO_USER, MONGO_PASS, MONGO_DBNAME } = process.env;
@@ -17,4 +17,4 @@ export const startServer = () =>
     });
 
 // mongoose strict mode
-mongoose.set('strictQuery', false);
+mongoose.set("strictQuery", false);
