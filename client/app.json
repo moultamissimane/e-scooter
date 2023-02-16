@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "e-scooter",
+    "slug": "e-scooter",
+    "version": "1.0.0",
+    "sdkVersion": "47.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "android": {
+      "package": "com.moultamiss.escooter"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f25f2511-9c14-4008-a648-bee239381128"
+      }
+    }
+  }
+}
