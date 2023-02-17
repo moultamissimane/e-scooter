@@ -11,6 +11,7 @@ import {
 } from "react-native";
 // import LoginBg from "../../assets/LoginBg.png";
 // import { button3 } from "../common/Button";
+import BgLogin from "../assets/images/bg-login.jpg";
 
 type LoginProps = {
   navigation: any;
@@ -35,7 +36,7 @@ const Login = ({ navigation }: LoginProps) => {
       return;
     } else {
       try {
-        fetch("http://192.168.9.22:5000/login", {
+        fetch("http://192.168.9.22:8081/login", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -64,40 +65,47 @@ const Login = ({ navigation }: LoginProps) => {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.patternbg} />
+      <Image source={BgLogin} style={styles.patternbg} />
       <ScrollView style={styles.container1}>
-        <View style={styles.containerLogin}>
-          <Text style={styles.loginText}>Login</Text>
-          <Text style={styles.SigninText}>Sign in to continue</Text>
+        <View style={styles.LoginWrapper}>
+          <View style={styles.containerLogin}>
+            <Text style={styles.loginText}>Welcome Back</Text>
+            <Text style={styles.SigninText}>Sign in to continue</Text>
 
-          {errors ? <Text style={styles.error}>{errors}</Text> : null}
+            {errors ? <Text style={styles.error}>{errors}</Text> : null}
 
-          <View>
-            <Text style={styles.email}>Email</Text>
-            <TextInput
-              onPressIn={() => setErrors(null)}
-              onChangeText={(text: any) => setData({ ...data, email: text })}
-              style={styles.input1}
-              placeholder="Enter your email"
-            />
-            <Text style={styles.password}>Password</Text>
-            <TextInput
-              onPressIn={() => setErrors(null)}
-              onChangeText={(text: any) => setData({ ...data, password: text })}
-              style={styles.input2}
-              placeholder="Enter your password"
-            />
+            <View>
+              <Text style={styles.email}>Email</Text>
+              <TextInput
+                onPressIn={() => setErrors(null)}
+                onChangeText={(text: any) => setData({ ...data, email: text })}
+                style={styles.input1}
+                placeholder="Enter your email"
+              />
+              <Text style={styles.password}>Password</Text>
+              <TextInput
+                onPressIn={() => setErrors(null)}
+                onChangeText={(text: any) =>
+                  setData({ ...data, password: text })
+                }
+                style={styles.input2}
+                placeholder="Enter your password"
+              />
+            </View>
+            <TouchableOpacity onPressIn={sendToBackend}>
+              <Text style={styles.Login}>Login</Text>
+            </TouchableOpacity>
+
+            <Text
+              style={styles.Create}
+              onPress={() => navigation.navigate("Signup")}
+            >
+              Don't have an account?
+            </Text>
           </View>
-          <TouchableOpacity onPressIn={sendToBackend}>
-            <Text>Login</Text>
-          </TouchableOpacity>
-
-          <Text
-            style={styles.Create}
-            onPress={() => navigation.navigate("Signup")}
-          >
-            Don't have an account?
-          </Text>
+        </View>
+        <View>
+          <Text style={styles.input1}>go back to welcome page</Text>
         </View>
       </ScrollView>
     </View>
@@ -120,6 +128,23 @@ const styles = StyleSheet.create({
     top: 0,
     width: "100%",
     height: "100%",
+    // backgroundColor: "#800989",
+  },
+  LoginWrapper: {
+    display: "flex",
+    marginTop: "70%",
+    width: 415,
+    borderRadius: 20,
+    // height: "100%",
+    backgroundColor: "#dfc1f1",
+    shadowColor: "#37114d",
+    shadowOffset: {
+      width: -40,
+      height: 2,
+    },
+    shadowOpacity: 3.25,
+    shadowRadius: 4.84,
+    elevation: 6,
   },
   error: {
     backgroundColor: "red",
@@ -148,20 +173,30 @@ const styles = StyleSheet.create({
   containerLogin: {
     display: "flex",
     marginTop: "70%",
-    width: 410,
-    borderRadius: 10,
+    width: 415,
+    borderRadius: 20,
     height: "100%",
     backgroundColor: "white",
+    shadowColor: "#00000",
+    shadowOffset: {
+      width: -40,
+      height: 2,
+    },
+    shadowOpacity: 3.25,
+    shadowRadius: 4.84,
+    elevation: 6,
+  },
+  Login: {
+    fontFamily: "source-sans-pro",
   },
   loginText: {
-    display: "flex",
+    // display: "flex",
     marginTop: "20%",
-    marginLeft: "40%",
-    fontSize: 30,
-    color: "#4b66e4",
-    justifyContent: "center",
-    alignItems: "center",
-    // fontWeight: "bold",
+    fontSize: 50,
+    fontFamily: "source-sans-pro",
+    color: "#000000",
+    fontWeight: "bold",
+    textAlign: "center",
   },
   SigninText: {
     display: "flex",
