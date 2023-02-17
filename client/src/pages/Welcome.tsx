@@ -1,51 +1,38 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Animated, Image, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 // @ts-ignore
 import Rent from "@/assets/images/Rent.png";
 import { NavigationProp } from "@react-navigation/native";
-// @ts-ignore
-import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
   navigation: NavigationProp<Record<string, unknown>>;
 }
-
+// @ts-ignore
 export default function Welcome({ navigation }: Props): JSX.Element {
-  const [showPage, setShowPage] = useState(true);
+  const fadeIn = new Animated.Value(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.navigate("Login");
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [navigation]);
+    Animated.timing(fadeIn, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        navigation.navigate("Login");
+      }, 7000);
+      return () => clearTimeout(timer);
+    }, [navigation]);
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <motion.div
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 0 }}
-        exit={{ opacity: 0 }}
-      >
-        <View style={styles.container}>
-          <Image style={styles.patternbg} source={Rent} />
-          {/* <View style={styles.container1}>
-            <Text
-              style={styles.button1}
-              onPress={() => navigation.navigate("Login")}
-            >
-              Login
-            </Text>
-            <Text
-              style={styles.button2}
-              onPress={() => navigation.navigate("Signup")}
-            >
-              Signup
-            </Text>
-          </View> */}
-        </View>
-      </motion.div>
-    </AnimatePresence>
+    <Animated.View style={styles.container}>
+      <Image style={styles.patternbg} source={Rent} />
+      {/* <View style={styles.container1}>
+        <Text style={styles.welcome}>Welcome to E-scoooter</Text>
+      </View> */}
+    </Animated.View>
   );
 }
 
@@ -58,6 +45,14 @@ const styles = StyleSheet.create({
   },
   container1: {
     flex: 1,
+  },
+  welcome: {
+    fontSize: 50,
+    color: "#270329",
+    textAlign: "center",
+    marginTop: 50,
+    fontWeight: "bold",
+    fontFamily: "source-sans-pro",
   },
   patternbg: {
     position: "absolute",
