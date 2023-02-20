@@ -163,17 +163,11 @@ const styles = StyleSheet.create({
     display: "flex",
     marginTop: "75%",
     width: 415,
-    borderRadius: 20,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     height: "100%",
     backgroundColor: "white",
-    shadowColor: "#FFFFF",
-    shadowOffset: {
-      width: -40,
-      height: 2,
-    },
-    shadowOpacity: 10,
-    shadowRadius: 4.84,
-    elevation: 6,
+    
   },
   Login: {
     fontFamily: "source-sans-pro",
