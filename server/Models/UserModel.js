@@ -1,7 +1,6 @@
-import { Schema as _Schema, model } from "mongoose";
-const Schema = _Schema;
-import { hash } from "bcryptjs";
-
+const Schema = require("mongoose").Schema;
+const model = require("mongoose").model;
+const hash = require("bcryptjs").hash;
 
 const userSchema = new Schema({
   name: {
@@ -34,3 +33,4 @@ userSchema.pre("save", async function (next) {
 });
 
 const User = model("user", userSchema);
+module.exports = User;
