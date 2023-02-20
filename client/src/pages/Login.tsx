@@ -7,10 +7,10 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
-// import LoginBg from "../../assets/LoginBg.png";
-// import { button3 } from "../common/Button";
+// @ts-ignore
 import BgLogin from "../assets/images/bg-login.jpg";
 
 type LoginProps = {
@@ -62,15 +62,15 @@ const Login = ({ navigation }: LoginProps) => {
       }
     }
   };
-
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   return (
-    <View style={styles.container}>
-      <Image source={BgLogin} style={styles.patternbg} />
-      <ScrollView style={styles.container1}>
-        <View style={styles.LoginWrapper}>
-          <View style={styles.containerLogin}>
-            <Text style={styles.loginText}>Welcome Back</Text>
-            <Text style={styles.SigninText}>Sign in to continue</Text>
+    <View style={{ width: windowWidth, height: windowHeight }}>
+      <View style={styles.container}>
+        <Image source={BgLogin} style={styles.patternbg} />
+        <View style={styles.container1}>
+          <ScrollView style={styles.containerLogin}>
+            <Text style={styles.welcomeBack}>Welcome Back</Text>
+            <Text style={styles.SigninText}>Enter your details below</Text>
 
             {errors ? <Text style={styles.error}>{errors}</Text> : null}
 
@@ -89,6 +89,7 @@ const Login = ({ navigation }: LoginProps) => {
                   setData({ ...data, password: text })
                 }
                 style={styles.input2}
+                secureTextEntry={true}
                 placeholder="Enter your password"
               />
             </View>
@@ -102,12 +103,9 @@ const Login = ({ navigation }: LoginProps) => {
             >
               Don't have an account?
             </Text>
-          </View>
+          </ScrollView>
         </View>
-        <View>
-          <Text style={styles.input1}>go back to welcome page</Text>
-        </View>
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -130,69 +128,67 @@ const styles = StyleSheet.create({
     height: "100%",
     // backgroundColor: "#800989",
   },
-  LoginWrapper: {
-    display: "flex",
-    marginTop: "70%",
-    width: 415,
-    borderRadius: 20,
-    // height: "100%",
-    backgroundColor: "#dfc1f1",
-    shadowColor: "#37114d",
-    shadowOffset: {
-      width: -40,
-      height: 2,
-    },
-    shadowOpacity: 3.25,
-    shadowRadius: 4.84,
-    elevation: 6,
+  goBack: {
+    color: "#9848FF",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    margin: 10,
   },
   error: {
     backgroundColor: "red",
     color: "white",
     padding: 10,
-    borderRadius: 5,
-    margin: 10,
+    borderRadius: 10,
+    margin: 7,
     fontSize: 15,
   },
   input1: {
     height: 40,
     margin: 12,
-    borderWidth: 1,
-    borderRadius: 20,
+    borderWidth: 2,
+    borderRadius: 10,
     padding: 13,
-    borderColor: "#4b66e4",
+    borderColor: "#908F96",
   },
   input2: {
     height: 40,
     margin: 12,
-    borderWidth: 1,
-    borderRadius: 20,
+    borderWidth: 2,
+    borderRadius: 10,
     padding: 13,
-    borderColor: "#4b66e4",
+    borderColor: "#908F96",
   },
   containerLogin: {
     display: "flex",
-    marginTop: "70%",
+    marginTop: "75%",
     width: 415,
     borderRadius: 20,
     height: "100%",
     backgroundColor: "white",
-    shadowColor: "#00000",
+    shadowColor: "#FFFFF",
     shadowOffset: {
       width: -40,
       height: 2,
     },
-    shadowOpacity: 3.25,
+    shadowOpacity: 10,
     shadowRadius: 4.84,
     elevation: 6,
   },
   Login: {
     fontFamily: "source-sans-pro",
+    color: "#ffffff",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#9848FF",
+    padding: 10,
+    borderRadius: 10,
+    margin: 10,
   },
-  loginText: {
-    // display: "flex",
-    marginTop: "20%",
-    fontSize: 50,
+  welcomeBack: {
+    marginTop: "10%",
+    fontSize: 40,
     fontFamily: "source-sans-pro",
     color: "#000000",
     fontWeight: "bold",
@@ -201,29 +197,25 @@ const styles = StyleSheet.create({
   SigninText: {
     display: "flex",
     marginTop: 2,
-    marginLeft: "30%",
     fontSize: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    // fontWeight: "semibold",
+    textAlign: "center",
+    color: "#908F96",
   },
   email: {
     display: "flex",
-    // marginTop: "20%",
+    marginTop: "5%",
     marginLeft: "10%",
     fontSize: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    // fontWeight: "semibold",
+    color: "#908F96",
   },
   password: {
     display: "flex",
-    // marginTop: "20%",
+    marginTop: "3%",
     marginLeft: "10%",
     fontSize: 15,
     justifyContent: "center",
     alignItems: "center",
-    // fontWeight: "semibold",
+    color: "#908F96",
   },
   loginBtn: {
     display: "flex",
@@ -238,12 +230,10 @@ const styles = StyleSheet.create({
   },
   Create: {
     display: "flex",
-    marginTop: "10%",
-    marginBottom: "40%",
-    marginLeft: "25%",
+    marginTop: "5%",
+    textAlign: "center",
     fontSize: 20,
-    // fontWeight: "semibold",
-    color: "#4b66e4",
+    color: "#908F96",
   },
 });
 
