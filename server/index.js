@@ -1,13 +1,12 @@
-import express from "express";
+// import express from "express";
+const express = require("express");
 const app = express();
-import { json } from "body-parser";
 const PORT = process.env.PORT || 5000;
-import connectDB from "./config/Db";
-import "./models/User";
-import AuthRoutes from "./Routes/AuthRoutes";
-import requireToken from "./middlewares/VerifyJwt";
-
-connectDB();
+const startServer = require("./Config/Db").startServer; 
+const json = require("express").json;
+const User  = require("./Models/UserModel");
+const AuthRoutes = require("./Routes/UserRoutes");
+const requireToken = require("./middleware/AuthMiddleware");
 
 app.use(json());
 
@@ -21,3 +20,6 @@ app.get("/", requireToken, (req, res) => {
 app.listen(PORT, () => {
   console.log(`listening on PORT: ${PORT} successfully ✨`);
 });
+
+startServer();
+
