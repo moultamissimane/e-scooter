@@ -1,11 +1,12 @@
-import express from "express";
-import mongoose from "mongoose";
-export const app = express();
+const express = require("express");
+const mongoose = require("mongoose");
+const app = express();
+require("dotenv").config();
 
 const { PORT, MONGO_USER, MONGO_PASS, MONGO_DBNAME } = process.env;
-const MONGO_URI = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@cluster0.xde6xue.mongodb.net/${MONGO_DBNAME}`;
+const MONGO_URI = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@cluster0.trbgah0.mongodb.net/${MONGO_DBNAME}`;
 
-export const startServer = () =>
+ const startServer = () =>
   mongoose
     .connect(MONGO_URI)
     .then(() => {
@@ -18,3 +19,5 @@ export const startServer = () =>
 
 // mongoose strict mode
 mongoose.set("strictQuery", false);
+
+module.exports = { app, startServer };
