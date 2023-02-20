@@ -1,9 +1,9 @@
-import { Router } from "express";
-const router = Router();
-import { model } from "mongoose";
+const model = require("mongoose").model;
 const User = model("user");
-import { sign } from "jsonwebtoken";
-import { compare } from "bcryptjs";
+// import { sign } from "jsonwebtoken";
+const  sign = require("jsonwebtoken").sign;
+const compare = require("bcryptjs").compare;
+// import { compare } from "bcryptjs";
 require("dotenv").config();
 
 const Login = async (req, res) => {
@@ -30,4 +30,4 @@ const Login = async (req, res) => {
   }
 };
 
-export default Login;
+module.exports = Login;
