@@ -21,7 +21,7 @@ export default function Welcome({ navigation }: Props): JSX.Element {
 
     useEffect(() => {
       const timer = setTimeout(() => {
-        navigation.navigate("Login");
+        navigation.navigate("Home");
       }, 7000);
       return () => clearTimeout(timer);
     }, [navigation]);
