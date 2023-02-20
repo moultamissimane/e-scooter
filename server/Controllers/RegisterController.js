@@ -1,9 +1,9 @@
-import { Router } from "express";
-const router = Router();
-import { model } from "mongoose";
+
+const model = require("mongoose").model;
 const User = model("user");
-import { sign } from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+const  sign = require("jsonwebtoken").sign;
+const compare = require("bcryptjs").compare;
+require("dotenv").config();
 require("dotenv").config();
 
 const Register = async (req, res) => {
@@ -13,6 +13,7 @@ const Register = async (req, res) => {
     await user.save();
     const token = sign({ userId: user._id }, process.env.JWT_SECRET);
     res.send({ token });
+    console.log(res);
   } catch (err) {
     return res.status(422).send(err.message);
   }
@@ -33,6 +34,7 @@ const Register = async (req, res) => {
     user
       .save()
       .then((user) => {
+        console.log(user);
         res.json({ message: "saved successfully" });
       })
       .catch((err) => {
@@ -41,4 +43,4 @@ const Register = async (req, res) => {
   });
 };
 
-export default Register;
+module.exports = Register;
