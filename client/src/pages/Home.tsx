@@ -1,38 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import MapboxGL from "@react-native-mapbox-gl/maps";
+import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
 
 export default function Home() {
-  MapboxGL.setAccessToken("YOUR_MAPBOX_ACCESS_TOKEN");
-  const [coordinates] = useState([78.9629, 20.5937]);
+ 
   return (
     <View style={styles.page}>
-    <View style={styles.container}>
-      <MapboxGL.MapView style={styles.map}>
-        <MapboxGL.Camera
-          zoomLevel={4}
-          centerCoordinate={coordinates}
-        />
-        <MapboxGL.PointAnnotation coordinate={coordinates} />
-      </MapboxGL.MapView>
+      
     </View>
-  </View>
-);
+  );
 }
 
 const styles = StyleSheet.create({
-  page: {
+  page: {   
     flex: 1,
-    justifyContent: "center",
+    backgroundColor: "#fff",
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    justifyContent: "center",
   },
-  container: {
-  height: '100%',
-    width: '100%',
-    backgroundColor: 'blue',
-  },
-  map: {
-    flex: 1
-  }
-})
+});
