@@ -46,7 +46,7 @@ const Signup: React.FC<{ navigation: any }> = ({ navigation }) => {
         return;
       } else {
         try {
-          fetch("http://192.168.9.22:8081/signup", {
+          fetch("http://192.168.9.22:19000/signup", {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -54,7 +54,7 @@ const Signup: React.FC<{ navigation: any }> = ({ navigation }) => {
             },
             body: JSON.stringify(data),
           }).then((res) =>
-          res.json().then((data) => {
+            res.json().then((data) => {
               console.log(data);
               if (data.error) {
                 setErrors(data.message);
@@ -73,16 +73,16 @@ const Signup: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image style={styles.patternbg} source={BgLogin} />
-
       <ScrollView style={styles.container1}>
         <View style={styles.containerLogin}>
           <Text
             style={styles.getStarted}
-            onPress={() => navigation.navigate("Welcome")}
           >
             Get started free.
           </Text>
-          <Text style={styles.CreateText}>Free forever. No credit card needed.</Text>
+          <Text style={styles.CreateText}>
+            Free forever. No credit card needed.
+          </Text>
 
           {errors ? <Text style={styles.error}>{errors}</Text> : null}
           <View>
@@ -170,14 +170,14 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 12,
+    margin: 10,
     borderWidth: 2,
     borderRadius: 10,
-    padding: 13,
+    padding: 11,
     borderColor: "#908F96",
   },
   signup: {
-    fontFamily: "source-sans-pro",
+    fontFamily: "quicksand-regular",
     color: "#ffffff",
     fontSize: 20,
     fontWeight: "bold",
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
   getStarted: {
     marginTop: "5%",
     fontSize: 40,
-    fontFamily: "source-sans-pro",
+    fontFamily: "quicksand-regular",
     color: "#000000",
     fontWeight: "bold",
     textAlign: "center",
