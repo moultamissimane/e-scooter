@@ -25,7 +25,7 @@ export default function Welcome({
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate("Root");
+      navigation.navigate("Login");
     }, 7000);
     return () => clearTimeout(timer);
   }, [navigation]);
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 50,
     fontWeight: "bold",
-    fontFamily: "source-sans-pro",
+    fontFamily: "quicksand-regular",
   },
   patternbg: {
     position: "absolute",
