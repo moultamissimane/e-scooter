@@ -61,11 +61,17 @@ function RootNavigator() {
       />
       {/* @ts-ignore */}
       <Stack.Screen
-        name="Root"
-        component={BottomTabNavigator}
+        name="Login"
+        component={Login}
         options={{ headerShown: false }}
       />
-      {/* @ts-ignore */}      
+      {/* @ts-ignore */}
+      <Stack.Screen
+        name="Signup"
+        component={Signup}
+        options={{ headerShown: false }}
+      />
+      {/* @ts-ignore */}
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
@@ -84,59 +90,59 @@ function RootNavigator() {
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+// const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
-function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+// function BottomTabNavigator() {
+//   const colorScheme = useColorScheme();
 
-  return (
-    <BottomTab.Navigator
-      initialRouteName="Login"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}
-    >
-      <BottomTab.Screen
-        name="Login"
-        component={Login}
-        options={({ navigation }: RootTabScreenProps<"Login">) => ({
-          title: "Login",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
-      />
-      <BottomTab.Screen
-        name="Signup"
-        component={Signup}
-        options={{
-          title: "Signup",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
-  );
-}
+//   return (
+//     <BottomTab.Navigator
+//       initialRouteName="Login"
+//       // screenOptions={{
+//       //   tabBarActiveTintColor: Colors[colorScheme].tint,
+//       // }}
+//     >
+//       <BottomTab.Screen
+//         name="Login"
+//         component={Login}
+//         // options={({ navigation }: RootTabScreenProps<"Login">) => ({
+//         //   title: "Login",
+//         //   // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+//         //   // headerRight: () => (
+//         //   //   <Pressable
+//         //   //     onPress={() => navigation.navigate("Modal")}
+//         //   //     style={({ pressed }) => ({
+//         //   //       opacity: pressed ? 0.5 : 1,
+//         //   //     })}
+//         //   //   >
+//         //   //     <FontAwesome
+//         //   //       name="info-circle"
+//         //   //       size={25}
+//         //   //       color={Colors[colorScheme].text}
+//         //   //       style={{ marginRight: 15 }}
+//         //   //     />
+//         //   //   </Pressable>
+//         //   // ),
+//         // })}
+//       />
+//       {/* <BottomTab.Screen
+//         name="Signup"
+//         component={Signup}
+//         options={{
+//           title: "Signup",
+//           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+//         }}
+//       /> */}
+//     </BottomTab.Navigator>
+//   );
+// }
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-}
+// function TabBarIcon(props: {
+//   name: React.ComponentProps<typeof FontAwesome>["name"];
+//   color: string;
+// }) {
+//   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+// }
